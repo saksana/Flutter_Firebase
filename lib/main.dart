@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           FormScreen(),
           DisplayScreen(),
         ]),

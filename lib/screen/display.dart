@@ -26,7 +26,19 @@ class _DisplayScreenState extends State<DisplayScreen> {
           }
           return ListView(
             children: snapshot.data!.docs.map((document) {
-              return Container();
+              // ignore: avoid_unnecessary_containers
+              return Container(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: FittedBox(
+                      child: Text(document["score"]),
+                    ),
+                  ),
+                  title: Text(document["fname"] + " " + document["lname"]),
+                  subtitle: Text(document["email"]),
+                ),
+              );
             }).toList(),
           );
         },
