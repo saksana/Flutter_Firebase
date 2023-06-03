@@ -24,7 +24,11 @@ class _DisplayScreenState extends State<DisplayScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return ListView();
+          return ListView(
+            children: snapshot.data!.docs.map((document) {
+              return Container();
+            }).toList(),
+          );
         },
       ),
     );

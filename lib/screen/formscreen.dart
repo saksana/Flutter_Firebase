@@ -25,7 +25,7 @@ class _FormScreenState extends State<FormScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Scaffold(
-              appBar: AppBar(title: Text("error")),
+              appBar: AppBar(title: const Text("error")),
               body: Center(
                 child: Text("${snapshot.error}"),
               ),
@@ -122,7 +122,7 @@ class _FormScreenState extends State<FormScreen> {
               ),
             );
           }
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
