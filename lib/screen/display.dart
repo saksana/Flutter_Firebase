@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DisplayScreen extends StatefulWidget {
@@ -15,7 +16,17 @@ class _DisplayScreenState extends State<DisplayScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("ລາຍງານຄະແນນ"),
       ),
-      body: Container(),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("students").snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView();
+        },
+      ),
     );
   }
 }
