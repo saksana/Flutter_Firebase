@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -15,6 +16,8 @@ class _FormScreenState extends State<FormScreen> {
   final formkey = GlobalKey<FormState>();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   Student myStudent = Student();
+  CollectionReference studentCollecttion =
+      FirebaseFirestore.instance.collection("students");
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -99,7 +102,13 @@ class _FormScreenState extends State<FormScreen> {
                             onPressed: () async {
                               if (formkey.currentState!.validate()) {
                                 formkey.currentState!.save();
-                                //print(myStudent.fname);
+                                await studentCollecttion.add({
+                                  "fname": myStudent.fname,
+                                  "lname": myStudent.lname,
+                                  "email": myStudent.emai,
+                                  "score": myStudent.score
+                                });
+                                formkey.currentState!.reset();
                               }
                             },
                             child: const Text("ບັນທຶກຂໍ້ມູນ",
